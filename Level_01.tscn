@@ -1,69 +1,38 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Goal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Box.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Level.tscn" type="PackedScene" id=4]
-[ext_resource path="res://floor.png" type="Texture" id=5]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 160, 8 )
 
 [node name="Level_01" instance=ExtResource( 4 )]
 
-[node name="Box" parent="." index="0" instance=ExtResource( 2 )]
-position = Vector2( 192, 176 )
+[node name="Player" parent="." index="0" instance=ExtResource( 3 )]
+position = Vector2( 32, 64 )
 
-[node name="Box4" parent="." index="1" instance=ExtResource( 2 )]
-position = Vector2( 0, 176 )
+[node name="Goal" parent="." index="1" instance=ExtResource( 1 )]
+position = Vector2( 288, 112 )
 
-[node name="Box5" parent="." index="2" instance=ExtResource( 2 )]
-position = Vector2( 0, 160 )
+[node name="TileMap" parent="." index="2"]
+tile_data = PoolIntArray( -1, 0, 8, -65536, 0, 65547, -65535, 0, 65547, -65534, 0, 65547, -65533, 0, 65547, -65532, 0, 65547, -65531, 0, 65547, -65530, 0, 65547, -65529, 0, 65547, -65528, 0, 65547, -65527, 0, 65547, -65526, 0, 65547, -65525, 0, 65547, -65524, 0, 65547, -65523, 0, 65547, -65522, 0, 65547, -65521, 0, 65547, -65520, 0, 65547, -65519, 0, 65547, -65518, 0, 65547, -65517, 0, 65547, -65516, 0, 9, 65535, 0, 10, 0, 0, 131083, 1, 0, 131073, 2, 0, 65546, 3, 0, 65546, 4, 0, 65546, 5, 0, 65546, 6, 0, 65546, 7, 0, 131072, 8, 0, 131083, 9, 0, 131083, 10, 0, 131083, 11, 0, 131083, 12, 0, 131083, 13, 0, 131083, 14, 0, 131083, 15, 0, 131083, 16, 0, 131083, 17, 0, 131083, 18, 0, 131083, 19, 0, 131083, 20, 0, 11, 131071, 0, 10, 65536, 0, 131073, 65537, 0, 65545, 65543, 0, 65544, 65544, 0, 65546, 65545, 0, 131072, 65546, 0, 131083, 65547, 0, 131083, 65548, 0, 131083, 65549, 0, 131083, 65550, 0, 131083, 65551, 0, 131083, 65552, 0, 131083, 65553, 0, 131083, 65554, 0, 131083, 65555, 0, 131083, 65556, 0, 11, 196607, 0, 10, 131072, 0, 11, 131081, 0, 65544, 131082, 0, 131072, 131083, 0, 131083, 131084, 0, 131073, 131085, 0, 65546, 131086, 0, 65546, 131087, 0, 65546, 131088, 0, 131072, 131089, 0, 131083, 131090, 0, 131083, 131091, 0, 131083, 131092, 0, 11, 262143, 0, 10, 196608, 0, 11, 196618, 0, 65544, 196619, 0, 131072, 196620, 0, 11, 196624, 0, 65544, 196625, 0, 65546, 196626, 0, 131072, 196627, 0, 131083, 196628, 0, 11, 327679, 0, 10, 262144, 0, 131081, 262145, 0, 2, 262146, 0, 2, 262147, 0, 2, 262148, 0, 131074, 262149, 0, 9, 262155, 0, 65544, 262156, 0, 65545, 262162, 0, 65544, 262163, 0, 131072, 262164, 0, 11, 393215, 0, 10, 327680, 0, 11, 327684, 0, 10, 327685, 0, 11, 327699, 0, 10, 327700, 0, 11, 458751, 0, 10, 393216, 0, 11, 393219, 0, 8, 393220, 0, 196618, 393221, 0, 65545, 393235, 0, 10, 393236, 0, 11, 524287, 0, 10, 458752, 0, 11, 458754, 0, 6, 458755, 0, 196610, 458756, 0, 65545, 458768, 0, 8, 458769, 0, 65547, 458770, 0, 65547, 458771, 0, 196608, 458772, 0, 11, 589823, 0, 10, 524288, 0, 11, 524304, 0, 10, 524305, 0, 131083, 524306, 0, 131083, 524307, 0, 131083, 524308, 0, 11, 655359, 0, 10, 589824, 0, 11, 589840, 0, 10, 589841, 0, 131083, 589842, 0, 131083, 589843, 0, 131083, 589844, 0, 11, 720895, 0, 10, 655360, 0, 11, 655370, 0, 8, 655371, 0, 65547, 655372, 0, 65547, 655373, 0, 65547, 655374, 0, 65547, 655375, 0, 65547, 655376, 0, 196608, 655377, 0, 131083, 655378, 0, 131083, 655379, 0, 131083, 655380, 0, 11, 786431, 0, 65544, 720896, 0, 196611, 720897, 0, 2, 720898, 0, 2, 720899, 0, 2, 720900, 0, 2, 720901, 0, 2, 720902, 0, 2, 720903, 0, 2, 720904, 0, 2, 720905, 0, 2, 720906, 0, 196610, 720907, 0, 65546, 720908, 0, 65546, 720909, 0, 65546, 720910, 0, 65546, 720911, 0, 65546, 720912, 0, 65546, 720913, 0, 65546, 720914, 0, 65546, 720915, 0, 65546, 720916, 0, 65545 )
 
-[node name="Box6" parent="." index="3" instance=ExtResource( 2 )]
+[node name="Box11" parent="." index="3" instance=ExtResource( 2 )]
 position = Vector2( 16, 176 )
 
-[node name="Box2" parent="." index="4" instance=ExtResource( 2 )]
-position = Vector2( 176, 176 )
+[node name="Box15" parent="." index="4" instance=ExtResource( 2 )]
+position = Vector2( 32, 176 )
 
-[node name="Box3" parent="." index="5" instance=ExtResource( 2 )]
-position = Vector2( 192, 160 )
+[node name="Box16" parent="." index="5" instance=ExtResource( 2 )]
+position = Vector2( 16, 160 )
 
-[node name="Player" parent="." index="6" instance=ExtResource( 3 )]
-position = Vector2( 120, 176 )
+[node name="Box13" parent="." index="6" instance=ExtResource( 2 )]
+position = Vector2( 224, 144 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="7"]
-position = Vector2( 160, 184 )
-collision_mask = 0
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Box14" parent="." index="7" instance=ExtResource( 2 )]
+position = Vector2( 224, 160 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-shape = SubResource( 1 )
+[node name="Box17" parent="." index="8" instance=ExtResource( 2 )]
+position = Vector2( 240, 160 )
 
-[node name="Sprite" type="Sprite" parent="StaticBody2D" index="1"]
-position = Vector2( 7.62939e-06, 0 )
-scale = Vector2( 1.77778, 1 )
-texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 180, 16 )
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="8"]
-position = Vector2( 384, 128 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D2" index="1"]
-position = Vector2( 7.62939e-06, 0 )
-scale = Vector2( 1.77778, 1 )
-texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 180, 16 )
-
-[node name="Goal" parent="." index="9" instance=ExtResource( 1 )]
-position = Vector2( 296, 120 )
+[node name="Box18" parent="." index="9" instance=ExtResource( 2 )]
+position = Vector2( 208, 160 )

@@ -9,7 +9,7 @@ func _enter_tree():
 
 
 func _on_Goal_body_entered(player):
-	if active:
+	if active and player.is_in_group("player"):
 		player.emit_signal("hit_goal", self)
 		
 		if next_level != "":

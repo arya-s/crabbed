@@ -74,8 +74,8 @@ func grab_box(box):
 	add_child(box_sprite)
 	box.queue_free()
 #
-	collider.shape.extents.y = 16
-	collider.position.y = -16
+	collider.shape.extents.y = 15
+	collider.position.y = -15
 	
 	is_holding = true
 
