@@ -22,12 +22,14 @@ var just_jumped = false
 var max_fall = 0
 var variable_jump_speed = 0
 var facing = NEUTRAL
+var is_holding = false
 
 onready var sprite = $Sprite
 onready var coyote_jump_timer = $CoyoteJumpTimer
 onready var variable_jump_timer = $VariableJumpTimer
 onready var grab_left = $GrabLeft
 onready var grab_right = $GrabRight
+onready var collider = $Collider
 
 func _physics_process(delta):
 	just_jumped = false
@@ -43,12 +45,24 @@ func _physics_process(delta):
 	pickup_item()
 	
 func pickup_item():
-	if facing == LEFT and grab_left.is_colliding():
-		print("Got body", grab_left.get_collider())
-	elif facing == RIGHT and grab_right.is_colliding():
-		print("Got body", grab_right.get_collider())
+	if not is_holding and grab_left.is_colliding():
+		grab_box(grab_left.get_collider())
+		is_holding = true
+		
+	if not is_holding and grab_right.is_colliding():
+		grab_box(grab_right.get_collider())
+		is_holding = true
+
+func grab_box(box):
+	var box_sprite = box.get_node("Sprite").duplicate()
+	box_sprite.name = "HoldingSprite"
+	box_sprite.position = Vector2(0, -24)
+	add_child(box_sprite)
+	box.queue_free()
 	
-	
+	collider.shape.extents.y = 16
+	collider.position.y = -16
+
 func update_animations():
 	if facing != 0:
 		sprite.scale.x = facing
