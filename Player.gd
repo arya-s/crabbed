@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var Box = preload("res://Box.tscn")
 
 export(int) var ACCELERATION = 1000
 export(int) var MAX_SPEED = 90
@@ -31,11 +32,23 @@ onready var grab_left = $GrabLeft
 onready var grab_right = $GrabRight
 onready var collider = $Collider
 
+signal hit_goal(goal)
+
+func _process(delta):
+	if Input.is_action_just_pressed("reset"):
+		get_tree().reload_current_scene()
+		collider.shape.extents.y = 7
+		collider.position.y = -7
+	
+
 func _physics_process(delta):
 	just_jumped = false
 
 	var input_vector = get_input_vector()
-	facing = sign(input_vector.x)
+	var direction = sign(input_vector.x)
+	
+	if direction != 0:
+		facing = direction
 	
 	apply_horizontal_force(input_vector, delta)
 	jump_check(input_vector)
@@ -45,23 +58,26 @@ func _physics_process(delta):
 	pickup_item()
 	
 func pickup_item():
-	if not is_holding and grab_left.is_colliding():
+	if not is_holding and facing == LEFT and grab_left.is_colliding():
 		grab_box(grab_left.get_collider())
-		is_holding = true
 		
-	if not is_holding and grab_right.is_colliding():
+	if not is_holding and facing == RIGHT and grab_right.is_colliding():
 		grab_box(grab_right.get_collider())
-		is_holding = true
 
 func grab_box(box):
+	if not box.is_in_group("pickable"):
+		return
+		
 	var box_sprite = box.get_node("Sprite").duplicate()
 	box_sprite.name = "HoldingSprite"
 	box_sprite.position = Vector2(0, -24)
 	add_child(box_sprite)
 	box.queue_free()
-	
+#
 	collider.shape.extents.y = 16
 	collider.position.y = -16
+	
+	is_holding = true
 
 func update_animations():
 	if facing != 0:

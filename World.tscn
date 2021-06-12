@@ -1,54 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Box.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://floor.png" type="Texture" id=3]
 [ext_resource path="res://World.gd" type="Script" id=4]
-[ext_resource path="res://Goal.tscn" type="PackedScene" id=5]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 160, 8 )
 
 [node name="World" type="Node"]
 script = ExtResource( 4 )
-
-[node name="Box" parent="." instance=ExtResource( 1 )]
-position = Vector2( 80, 176 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 40, 168 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 160, 184 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D"]
-position = Vector2( 7.62939e-06, 0 )
-scale = Vector2( 1.77778, 1 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 180, 16 )
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 288, 144 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D2"]
-position = Vector2( 7.62939e-06, 0 )
-scale = Vector2( 1.77778, 1 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 180, 16 )
-
-[node name="Goal" parent="." instance=ExtResource( 5 )]
-position = Vector2( 288, 176 )
+starting_level = "res://Level_00.tscn"

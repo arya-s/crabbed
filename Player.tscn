@@ -7,6 +7,7 @@
 extents = Vector2( 3, 7 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -26,11 +27,11 @@ wait_time = 0.2
 one_shot = true
 
 [node name="GrabLeft" type="RayCast2D" parent="."]
-position = Vector2( 1, -5 )
+position = Vector2( 0, -5 )
 enabled = true
-cast_to = Vector2( 3, 0 )
+cast_to = Vector2( -16, 0 )
 
 [node name="GrabRight" type="RayCast2D" parent="."]
-position = Vector2( -1, -5 )
+position = Vector2( 0, -5 )
 enabled = true
-cast_to = Vector2( -3, 0 )
+cast_to = Vector2( 16, 0 )

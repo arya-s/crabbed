@@ -1,3 +1,3 @@
-extends StaticBody2D
+extends RigidBody2D
 
 onready var collider = $Collider
