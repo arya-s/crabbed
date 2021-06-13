@@ -48,20 +48,23 @@ position = Vector2( 208, 64 )
 [node name="Player" parent="." index="10"]
 position = Vector2( 48, 64 )
 
-[node name="Blaster" parent="." index="11" instance=ExtResource( 5 )]
-position = Vector2( 215, 20 )
-rotation = 1.5708
-
-[node name="MainRoomShape" parent="." index="12" instance=ExtResource( 3 )]
+[node name="MainRoomShape" parent="." index="11" instance=ExtResource( 3 )]
+visible = false
 
 [node name="Collider" parent="MainRoomShape" index="0"]
 shape = SubResource( 1 )
 
-[node name="SideRoomShape" parent="." index="13" instance=ExtResource( 3 )]
+[node name="SideRoomShape" parent="." index="12" instance=ExtResource( 3 )]
+visible = false
 
 [node name="Collider" parent="SideRoomShape" index="0"]
 position = Vector2( -160, 90 )
 shape = SubResource( 2 )
+
+[node name="Blaster" parent="." index="13" instance=ExtResource( 5 )]
+position = Vector2( 216, 19 )
+rotation = 1.5708
+rocket_velocity = Vector2( 0, 1 )
 
 [editable path="Player"]
 [editable path="MainRoomShape"]

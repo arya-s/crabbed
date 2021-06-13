@@ -150,7 +150,6 @@ func apply_gravity(delta):
 			variable_jump_timer.stop()
 
 func update_camera(room: Area2D):
-	print("entered room", room.name)
 	var collider = room.get_node("Collider")
 	var size = collider.shape.extents * 2
 	
