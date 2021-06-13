@@ -326,3 +326,4 @@ format = 1
 [node name="Player" parent="." instance=ExtResource( 3 )]
 
 [editable path="Player"]
+[editable path="Player/Hurtbox"]

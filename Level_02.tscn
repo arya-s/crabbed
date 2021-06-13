@@ -67,5 +67,6 @@ rotation = 1.5708
 rocket_velocity = Vector2( 0, 1 )
 
 [editable path="Player"]
+[editable path="Player/Hurtbox"]
 [editable path="MainRoomShape"]
 [editable path="SideRoomShape"]

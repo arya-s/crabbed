@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var Box = preload("res://Box.tscn")
+var PlayerDeathEffect = preload("res://PlayerDeathEffect.tscn")
 
 export(int) var ACCELERATION = 1000
 export(int) var MAX_SPEED = 90
@@ -34,20 +35,27 @@ onready var collider = $Collider
 onready var camera = $Camera
 
 signal hit_goal(goal)
+signal player_death
 
 func _ready():
+	Events.connect("box_destroyed", self, "_on_Box_destroyed")
 	Global.Player = self
+
+func _on_Box_destroyed(box):
+	if is_a_parent_of(box):
+		# the box we were holding got destroyed so reset our extents
+		reset_player()
 
 
 func _process(delta):
 	if Input.is_action_just_pressed("reset"):
+		Utils.reset_scene()
 		reset_player()
-		get_tree().reload_current_scene()
-		
 	
 func reset_player():
 	collider.shape.extents.y = 7
 	collider.position.y = -7
+	is_holding = false
 
 func _physics_process(delta):
 	just_jumped = false
@@ -75,10 +83,10 @@ func pickup_item():
 func grab_box(box):
 	if not box.is_in_group("pickable"):
 		return
-		
-	var box_sprite = box.get_node("Sprite").duplicate()
-	box_sprite.name = "HoldingSprite"
-	box_sprite.position = Vector2(0, -24)
+	
+	var box_sprite = box.get_node("BoxSprite").duplicate()
+	box_sprite.name = "HoldingHurtbox"
+	box_sprite.position = Vector2(-8, -16)
 	add_child(box_sprite)
 	box.queue_free()
 #
@@ -164,3 +172,10 @@ func _on_RoomDetectorLeft_area_entered(room: Area2D):
 
 func _on_RoomDetectorRight_area_entered(room: Area2D):
 	update_camera(room)
+
+
+func _on_Hurtbox_hit(damage):
+	Events.emit_signal("add_screenshake")
+	Events.emit_signal("player_death")
+	Utils.instance_scene_on_main(PlayerDeathEffect, global_position)
+	queue_free()

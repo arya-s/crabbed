@@ -16,8 +16,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://Global.tscn"
 Utils="*res://Utils.gd"
+Events="*res://Events.gd"
 
 [display]
 
