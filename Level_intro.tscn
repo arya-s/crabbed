@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Car.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Crab.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://default_theme.tres" type="Theme" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 59 )
@@ -34,6 +35,26 @@ shape = SubResource( 1 )
 [node name="Goal" parent="." index="5" instance=ExtResource( 4 )]
 position = Vector2( 288, 129 )
 next_level = "res://Level_00.tscn"
+
+[node name="Control" type="Control" parent="." index="6"]
+margin_right = 321.0
+margin_bottom = 40.0
+theme = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control" index="0"]
+margin_left = -63.0
+margin_top = 1.0
+margin_right = 256.0
+margin_bottom = 87.0
+text = "CRABBED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="Crab" to="." method="_on_Crab_body_entered"]
 [connection signal="area_entered" from="CrabTrigger" to="." method="_on_CrabTrigger_area_entered"]
