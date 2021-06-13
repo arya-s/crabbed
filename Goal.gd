@@ -13,5 +13,6 @@ func _on_Goal_body_entered(player):
 		player.emit_signal("hit_goal", self)
 		
 		if next_level != "":
+			Global.Player.reset_player()
 			get_tree().change_scene(next_level)
 			active = false

@@ -31,15 +31,23 @@ onready var variable_jump_timer = $VariableJumpTimer
 onready var grab_left = $GrabLeft
 onready var grab_right = $GrabRight
 onready var collider = $Collider
+onready var camera = $Camera
 
 signal hit_goal(goal)
 
+func _ready():
+	Global.Player = self
+
+
 func _process(delta):
 	if Input.is_action_just_pressed("reset"):
+		reset_player()
 		get_tree().reload_current_scene()
-		collider.shape.extents.y = 7
-		collider.position.y = -7
+		
 	
+func reset_player():
+	collider.shape.extents.y = 7
+	collider.position.y = -7
 
 func _physics_process(delta):
 	just_jumped = false
@@ -140,3 +148,15 @@ func apply_gravity(delta):
 			motion.y = min(motion.y, variable_jump_speed)
 		else:
 			variable_jump_timer.stop()
+
+
+func _on_RoomDetector_area_entered(room):
+	print("entered room", room)
+	var collider = room.get_node("Collider")
+	var size = collider.shape.extents * 2
+	
+	camera.limit_left = collider.global_position.x - size.x / 2
+	camera.limit_top = collider.global_position.y - size.y / 2
+	camera.limit_right = camera.limit_left + size.x
+	camera.limit_bottom = camera.limit_top + size.y
+	
