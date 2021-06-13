@@ -16,6 +16,7 @@ tile_data = PoolIntArray( -1, 0, 8, -65536, 0, 65547, -65535, 0, 65547, -65534, 
 
 [node name="Goal" parent="." index="1" instance=ExtResource( 5 )]
 position = Vector2( 920, 80 )
+next_level = "res://Level_outro.tscn"
 
 [node name="Player" parent="." index="2"]
 position = Vector2( 48, 176 )
@@ -69,7 +70,15 @@ rocket_velocity = Vector2( -1, 0 )
 rocket_speed = 200
 rocket_interval = 0.8
 
-[node name="RoomShape" parent="." index="14" instance=ExtResource( 4 )]
+[node name="Blaster5" parent="." index="14" instance=ExtResource( 3 )]
+position = Vector2( 523, 164 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+rocket_velocity = Vector2( -1, 0 )
+rocket_speed = 200
+rocket_interval = 0.8
+
+[node name="RoomShape" parent="." index="15" instance=ExtResource( 4 )]
 visible = false
 
 [node name="Collider" parent="RoomShape" index="0"]
@@ -81,4 +90,5 @@ shape = SubResource( 1 )
 [editable path="Blaster"]
 [editable path="Blaster2"]
 [editable path="Blaster4"]
+[editable path="Blaster5"]
 [editable path="RoomShape"]
