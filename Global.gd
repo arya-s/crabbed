@@ -1,5 +1,7 @@
 extends Node
 
+var is_crabbed = false
+
 var Player
 onready var respawn_timer = $RespawnTimer
 

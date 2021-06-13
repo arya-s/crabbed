@@ -4,4 +4,4 @@
 
 [node name="World" type="Node"]
 script = ExtResource( 4 )
-starting_level = "res://Level_00.tscn"
+starting_level = "res://Level_intro.tscn"

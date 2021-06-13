@@ -26,8 +26,6 @@ var variable_jump_speed = 0
 var facing = NEUTRAL
 var is_holding = false
 
-var is_crabbed = true
-
 onready var sprite = $Sprite
 onready var animator = $AnimationPlayer
 onready var coyote_jump_timer = $CoyoteJumpTimer
@@ -100,7 +98,7 @@ func grab_box(box):
 
 
 func animate(animation):
-	if is_crabbed:
+	if Global.is_crabbed:
 		animator.play(animation + "Crab")
 	else:
 		animator.play(animation)
