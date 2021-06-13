@@ -28,7 +28,7 @@ position = Vector2( -96, 176 )
 position = Vector2( -80, 176 )
 
 [node name="Box16" parent="." index="4" instance=ExtResource( 4 )]
-position = Vector2( -96, 160 )
+position = Vector2( -88, 160 )
 
 [node name="Box13" parent="." index="5" instance=ExtResource( 4 )]
 position = Vector2( 224, 144 )
@@ -49,20 +49,18 @@ position = Vector2( 208, 64 )
 position = Vector2( 48, 64 )
 
 [node name="MainRoomShape" parent="." index="11" instance=ExtResource( 3 )]
-visible = false
 
 [node name="Collider" parent="MainRoomShape" index="0"]
 shape = SubResource( 1 )
 
 [node name="SideRoomShape" parent="." index="12" instance=ExtResource( 3 )]
-visible = false
 
 [node name="Collider" parent="SideRoomShape" index="0"]
 position = Vector2( -160, 90 )
 shape = SubResource( 2 )
 
 [node name="Blaster" parent="." index="13" instance=ExtResource( 5 )]
-position = Vector2( 216, 19 )
+position = Vector2( 216, 20 )
 rotation = 1.5708
 rocket_velocity = Vector2( 0, 1 )
 

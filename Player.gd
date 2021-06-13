@@ -26,7 +26,10 @@ var variable_jump_speed = 0
 var facing = NEUTRAL
 var is_holding = false
 
+var is_crabbed = true
+
 onready var sprite = $Sprite
+onready var animator = $AnimationPlayer
 onready var coyote_jump_timer = $CoyoteJumpTimer
 onready var variable_jump_timer = $VariableJumpTimer
 onready var grab_left = $GrabLeft
@@ -69,7 +72,7 @@ func _physics_process(delta):
 	apply_horizontal_force(input_vector, delta)
 	jump_check(input_vector)
 	apply_gravity(delta)
-	update_animations()
+	update_animations(input_vector)
 	move()
 	pickup_item()
 	
@@ -95,9 +98,28 @@ func grab_box(box):
 	
 	is_holding = true
 
-func update_animations():
-	if facing != 0:
-		sprite.scale.x = facing
+
+func animate(animation):
+	if is_crabbed:
+		animator.play(animation + "Crab")
+	else:
+		animator.play(animation)
+	
+func update_animations(input_vector):
+	if input_vector.x != 0:
+		sprite.scale.x = sign(input_vector.x)
+		animate("Run")
+	else:
+		animate("Idle")
+		
+	# air
+	if not is_on_floor():
+		var orientation = sign(motion.y)
+		if orientation == -1:
+			animate("Jump")
+		else:
+			animate("Fall")
+
 
 func get_input_vector():
 	var input_vector = Vector2.ZERO
@@ -110,7 +132,7 @@ func apply_horizontal_force(input_vector, delta):
 		motion.x = move_toward(motion.x, input_vector.x * MAX_SPEED, FRICTION * delta)
 	else:
 		motion.x = move_toward(motion.x, input_vector.x * MAX_SPEED, ACCELERATION * delta)
-
+		
 func move():
 	var was_in_air = not is_on_floor()
 	var was_on_floor = is_on_floor()
@@ -175,7 +197,6 @@ func _on_RoomDetectorRight_area_entered(room: Area2D):
 
 
 func _on_Hurtbox_hit(damage):
-	Events.emit_signal("add_screenshake")
+	var death_effect = Utils.instance_scene_on_main(PlayerDeathEffect, global_position)
 	Events.emit_signal("player_death")
-	Utils.instance_scene_on_main(PlayerDeathEffect, global_position)
 	queue_free()
