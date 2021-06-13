@@ -7,7 +7,7 @@
 extents = Vector2( 3, 7 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 8 )
+extents = Vector2( 1, 8 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -47,13 +47,31 @@ limit_left = 0
 limit_top = 0
 limit_right = 320
 limit_bottom = 180
+limit_smoothed = true
+drag_margin_h_enabled = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+drag_margin_left = 0.4
+drag_margin_top = 1.0
+drag_margin_right = 0.4
+drag_margin_bottom = 1.0
 
-[node name="RoomDetector" type="Area2D" parent="."]
+[node name="RoomDetectorLeft" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetector"]
-position = Vector2( 0, -8 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetectorLeft"]
+position = Vector2( -6, -8 )
 shape = SubResource( 2 )
 
-[connection signal="area_entered" from="RoomDetector" to="." method="_on_RoomDetector_area_entered"]
+[node name="RoomDetectorRight" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetectorRight"]
+position = Vector2( 6, -8 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="RoomDetectorLeft" to="." method="_on_RoomDetector_area_entered"]
+[connection signal="area_entered" from="RoomDetectorLeft" to="." method="_on_RoomDetectorLeft_area_entered"]
+[connection signal="area_entered" from="RoomDetectorRight" to="." method="_on_RoomDetectorRight_area_entered"]

@@ -149,9 +149,8 @@ func apply_gravity(delta):
 		else:
 			variable_jump_timer.stop()
 
-
-func _on_RoomDetector_area_entered(room):
-	print("entered room", room)
+func update_camera(room: Area2D):
+	print("entered room", room.name)
 	var collider = room.get_node("Collider")
 	var size = collider.shape.extents * 2
 	
@@ -159,4 +158,10 @@ func _on_RoomDetector_area_entered(room):
 	camera.limit_top = collider.global_position.y - size.y / 2
 	camera.limit_right = camera.limit_left + size.x
 	camera.limit_bottom = camera.limit_top + size.y
-	
+
+func _on_RoomDetectorLeft_area_entered(room: Area2D):
+	update_camera(room)
+
+
+func _on_RoomDetectorRight_area_entered(room: Area2D):
+	update_camera(room)
