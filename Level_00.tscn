@@ -20,14 +20,14 @@ tile_data = PoolIntArray( -1, 0, 8, -65536, 0, 65547, -65535, 0, 65547, -65534, 
 position = Vector2( 208, 160 )
 next_level = "res://Level_01.tscn"
 
-[node name="Player" parent="." index="3"]
-position = Vector2( 56, 160 )
-
 [node name="RoomShape" parent="." index="4" instance=ExtResource( 3 )]
 
 [node name="Collider" parent="RoomShape" index="0"]
 shape = SubResource( 1 )
 
+[node name="Player" parent="." index="5"]
+position = Vector2( 56, 160 )
+
+[editable path="RoomShape"]
 [editable path="Player"]
 [editable path="Player/Hurtbox"]
-[editable path="RoomShape"]
